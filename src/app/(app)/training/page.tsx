@@ -57,7 +57,7 @@ export default function TrainingPage() {
               <Skeleton className="h-3 w-10" />
             </div>
           ))
-        ) : (
+        ) : week.length > 0 ? (
           week.map((plan: { date: string; sport: string; workout_type: string; status: string }) => {
             const [y, m, day] = plan.date.split("-").map(Number);
             const d = new Date(y, m - 1, day);
@@ -74,6 +74,19 @@ export default function TrainingPage() {
                 <span className={`text-xs font-sans ${STATUS_STYLE[plan.status]}`}>{STATUS_ICON[plan.status]}</span>
                 <span className="font-pixel text-textDim" style={{ fontSize: 11 }}>{plan.workout_type.split(" ")[0].toUpperCase().slice(0, 4)}</span>
               </button>
+            );
+          })
+        ) : (
+          Array.from({ length: 7 }, (_, i) => {
+            const d = new Date(); d.setDate(d.getDate() - d.getDay() + 1 + i);
+            const dateStr = d.toISOString().split("T")[0];
+            const isToday = dateStr === today;
+            return (
+              <div key={i} className="flex-1 min-w-[52px] py-3 px-2 flex flex-col items-center gap-1 border-r border-border last:border-r-0 opacity-30">
+                <span className={`text-xs font-sans tracking-wider ${isToday ? "text-blue" : "text-textDim"}`}>{DAY_NAMES[d.getDay()]}</span>
+                <span className="text-xs font-sans text-textDim">—</span>
+                <span className="font-pixel text-textDim" style={{ fontSize: 11 }}>—</span>
+              </div>
             );
           })
         )}

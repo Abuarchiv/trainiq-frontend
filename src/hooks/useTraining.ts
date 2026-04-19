@@ -50,11 +50,11 @@ export function useTraining() {
       try {
         const data = await api.get("/training/plan", { params: { week: getMonday() } }).then((r) => r.data);
         cachePlans(data).catch(() => {});
-        return data;
+        return data as Array<Record<string, unknown>>;
       } catch {
         const cached = await getCachedPlans();
-        if (cached.length > 0) return cached;
-        return generateEmptyWeek();
+        if (cached.length > 0) return cached as Array<Record<string, unknown>>;
+        return [] as Array<Record<string, unknown>>;
       }
     },
     staleTime: 1000 * 60 * 5,

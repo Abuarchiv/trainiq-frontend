@@ -155,6 +155,11 @@ export default function DashboardPage() {
             </div>
           ))}
         </div>
+        {!metricsLoading && hrv === null && sleep === null && stress === null && (
+          <a href="/einstellungen" className="flex items-center justify-center gap-2 py-2 border-b border-border text-xs font-sans text-textDim hover:text-blue transition-colors">
+            <span>+ Uhr verbinden für Biometrie-Daten</span>
+          </a>
+        )}
       )}
 
       {/* Heutiges Training */}

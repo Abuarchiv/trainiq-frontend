@@ -208,10 +208,13 @@ export default function ChatPage() {
               <div className={`border p-3 text-sm font-sans leading-relaxed ${msg.role === "assistant" ? "border-border bg-surface text-textMain" : "border-border text-textMain"}`}>
                 {msg.role === "assistant" ? (
                   msg.content === "" ? (
-                    <span className="inline-flex gap-1">
-                      <span className="animate-bounce">.</span>
-                      <span className="animate-bounce delay-100">.</span>
-                      <span className="animate-bounce delay-200">.</span>
+                    <span className="inline-flex items-center gap-2 text-textDim text-xs tracking-widest">
+                      <span>DENKT</span>
+                      <span className="inline-flex gap-0.5">
+                        <span className="animate-bounce">.</span>
+                        <span className="animate-bounce" style={{ animationDelay: "0.1s" }}>.</span>
+                        <span className="animate-bounce" style={{ animationDelay: "0.2s" }}>.</span>
+                      </span>
                     </span>
                   ) : (
                     <span dangerouslySetInnerHTML={{ __html: formatContent(msg.content) }} />
