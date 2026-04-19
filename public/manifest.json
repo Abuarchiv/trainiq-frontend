@@ -1,0 +1,21 @@
+{
+  "name": "TrainIQ — KI Trainingscoach",
+  "short_name": "TrainIQ",
+  "description": "KI-gestützter Trainingscoach für Ausdauersportler",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#F5F5F0",
+  "theme_color": "#2563EB",
+  "lang": "de",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["health", "fitness", "sports"],
+  "screenshots": []
+}
