@@ -8,7 +8,6 @@ import api from "@/lib/api";
 import { Skeleton, MetricSkeleton, WorkoutRowSkeleton } from "@/components/ui/skeleton";
 import { StreakIndicator } from "@/components/StreakIndicator";
 import { SportIcon } from "@/components/ui/SportIcon";
-import { useWatch } from "@/hooks/useWatch";
 
 const EMPTY_NUTRITION = { calories: 0, target_cal: 0, protein_g: 0, target_protein: 0, carbs_g: 0, target_carbs: 0, fat_g: 0, target_fat: 0 };
 

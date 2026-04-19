@@ -4,7 +4,6 @@ import { useTraining, getDate, SPORTS, type TrainingPlanItem } from "@/hooks/use
 import { Skeleton, WorkoutRowSkeleton } from "@/components/ui/skeleton";
 import { useTrainingStats } from "@/hooks/useTrainingStats";
 import { SportIcon } from "@/components/ui/SportIcon";
-import { useWatch } from "@/hooks/useWatch";
 const DAY_NAMES = ["SO", "MO", "DI", "MI", "DO", "FR", "SA"];
 const STATUS_STYLE: Record<string, string> = { completed: "text-blue", skipped: "text-danger", planned: "text-textDim" };
 const STATUS_ICON: Record<string, string>  = { completed: "✓", skipped: "✕", planned: "›" };
