@@ -2,6 +2,20 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import api from "@/lib/api";
 import { cachePlans, getCachedPlans, queueAction } from "@/lib/offline";
 
+export interface TrainingPlanItem {
+  id: string;
+  date: string;
+  sport: string;
+  workout_type: string;
+  duration_min: number | null;
+  intensity_zone: number | null;
+  target_hr_min: number | null;
+  target_hr_max: number | null;
+  description: string | null;
+  coach_reasoning: string | null;
+  status: string;
+}
+
 const SPORTS: Record<string, string> = {
   running: "LAUFEN", cycling: "RADFAHREN", swimming: "SCHWIMMEN", rest: "PAUSE",
   // Garmin typeKey values
@@ -50,11 +64,11 @@ export function useTraining() {
       try {
         const data = await api.get("/training/plan", { params: { week: getMonday() } }).then((r) => r.data);
         cachePlans(data).catch(() => {});
-        return data as Array<Record<string, unknown>>;
+        return data as TrainingPlanItem[];
       } catch {
         const cached = await getCachedPlans();
-        if (cached.length > 0) return cached as Array<Record<string, unknown>>;
-        return [] as Array<Record<string, unknown>>;
+        if (cached.length > 0) return cached as TrainingPlanItem[];
+        return [] as TrainingPlanItem[];
       }
     },
     staleTime: 1000 * 60 * 5,
@@ -88,8 +102,8 @@ export function useTraining() {
     },
   });
 
-  const weekData = week.data ?? [];
-  const today = weekData.find((p: { date: string }) => p.date === getDate(0));
+  const weekData: TrainingPlanItem[] = week.data ?? [];
+  const today = weekData.find((p) => p.date === getDate(0));
 
   return {
     week: weekData,

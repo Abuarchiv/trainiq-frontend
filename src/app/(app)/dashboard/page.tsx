@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { useMemo } from "react";
 import { useMetrics } from "@/hooks/useMetrics";
-import { useTraining } from "@/hooks/useTraining";
+import { useTraining, type TrainingPlanItem } from "@/hooks/useTraining";
 import { useQuery } from "@tanstack/react-query";
 import api from "@/lib/api";
 import { Skeleton, MetricSkeleton, WorkoutRowSkeleton } from "@/components/ui/skeleton";

@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { useTraining, getDate, SPORTS } from "@/hooks/useTraining";
+import { useTraining, getDate, SPORTS, type TrainingPlanItem } from "@/hooks/useTraining";
 import { Skeleton, WorkoutRowSkeleton } from "@/components/ui/skeleton";
 import { useTrainingStats } from "@/hooks/useTrainingStats";
 import { SportIcon } from "@/components/ui/SportIcon";
@@ -18,7 +18,7 @@ export default function TrainingPage() {
   const [skipReason, setSkipReason] = useState("");
   const [showSkip, setShowSkip] = useState(false);
 
-  const selectedPlan = (week ?? []).find((p: { date: string }) => p.date === selected);
+  const selectedPlan = week.find((p: TrainingPlanItem) => p.date === selected);
 
   const handleComplete = (id: string) => {
     if (id.startsWith("empty-")) return;
@@ -58,7 +58,7 @@ export default function TrainingPage() {
             </div>
           ))
         ) : week.length > 0 ? (
-          week.map((plan: { date: string; sport: string; workout_type: string; status: string }) => {
+          week.map((plan: TrainingPlanItem) => {
             const [y, m, day] = plan.date.split("-").map(Number);
             const d = new Date(y, m - 1, day);
             const isToday = plan.date === today;

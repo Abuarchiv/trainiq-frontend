@@ -2,14 +2,14 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
-import { useTraining, SPORTS } from "@/hooks/useTraining";
+import { useTraining, SPORTS, type TrainingPlanItem } from "@/hooks/useTraining";
 import { TrainingDetailSkeleton } from "@/components/ui/skeleton";
 import { SportIcon } from "@/components/ui/SportIcon";
 
 export default function TrainingDatePage({ params }: { params: { date: string } }) {
   const router = useRouter();
   const { week, isLoading, complete, skip } = useTraining();
-  const plan = week.find((p: { date: string }) => p.date === params.date);
+  const plan = week.find((p: TrainingPlanItem) => p.date === params.date);
   const [showSkip, setShowSkip] = useState(false);
   const [skipReason, setSkipReason] = useState("");
 
