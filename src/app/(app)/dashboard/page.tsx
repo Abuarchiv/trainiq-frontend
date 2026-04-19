@@ -141,25 +141,27 @@ export default function DashboardPage() {
       {metricsLoading ? (
         <MetricSkeleton />
       ) : (
-        <div className="grid grid-cols-3 border-b border-border">
-          {[
-            { label: "HRV",    value: hrv != null ? hrv : "—",       unit: hrv != null ? "ms" : "",     trend: metricsLoading ? "..." : hrvTrend.text,   trendColor: metricsLoading ? "text-textDim" : hrvTrend.color },
-            { label: "Schlaf", value: sleep != null ? sleep : "—",   unit: sleep != null ? "std" : "",  trend: metricsLoading ? "..." : sleepTrend.text, trendColor: metricsLoading ? "text-textDim" : sleepTrend.color },
-            { label: "Stress", value: stress != null ? stress : "—", unit: stress != null ? "/ 100" : "", trend: metricsLoading ? "..." : stressTrend.text, trendColor: metricsLoading ? "text-textDim" : stressTrend.color },
-          ].map((m, i) => (
-            <div key={i} className={`px-4 py-4 ${i < 2 ? "border-r border-border" : ""}`}>
-              <p className="text-xs tracking-widest uppercase text-textDim font-sans mb-2">{m.label}</p>
-              <p className="font-pixel text-textMain" style={{ fontSize: 32, lineHeight: 1 }}>{m.value}</p>
-              <p className="text-xs font-sans text-textDim mt-1">{m.unit}</p>
-              <p className={`text-xs font-sans mt-1 ${m.trendColor}`}>{m.trend}</p>
-            </div>
-          ))}
-        </div>
-        {!metricsLoading && hrv === null && sleep === null && stress === null && (
-          <a href="/einstellungen" className="flex items-center justify-center gap-2 py-2 border-b border-border text-xs font-sans text-textDim hover:text-blue transition-colors">
-            <span>+ Uhr verbinden für Biometrie-Daten</span>
-          </a>
-        )}
+        <>
+          <div className="grid grid-cols-3 border-b border-border">
+            {[
+              { label: "HRV",    value: hrv != null ? hrv : "—",       unit: hrv != null ? "ms" : "",     trend: hrvTrend.text,   trendColor: hrvTrend.color },
+              { label: "Schlaf", value: sleep != null ? sleep : "—",   unit: sleep != null ? "std" : "",  trend: sleepTrend.text, trendColor: sleepTrend.color },
+              { label: "Stress", value: stress != null ? stress : "—", unit: stress != null ? "/ 100" : "", trend: stressTrend.text, trendColor: stressTrend.color },
+            ].map((m, i) => (
+              <div key={i} className={`px-4 py-4 ${i < 2 ? "border-r border-border" : ""}`}>
+                <p className="text-xs tracking-widest uppercase text-textDim font-sans mb-2">{m.label}</p>
+                <p className="font-pixel text-textMain" style={{ fontSize: 32, lineHeight: 1 }}>{m.value}</p>
+                <p className="text-xs font-sans text-textDim mt-1">{m.unit}</p>
+                <p className={`text-xs font-sans mt-1 ${m.trendColor}`}>{m.trend}</p>
+              </div>
+            ))}
+          </div>
+          {hrv === null && sleep === null && stress === null && (
+            <a href="/einstellungen" className="flex items-center justify-center gap-2 py-2 border-b border-border text-xs font-sans text-textDim hover:text-blue transition-colors">
+              <span>+ Uhr verbinden für Biometrie-Daten</span>
+            </a>
+          )}
+        </>
       )}
 
       {/* Heutiges Training */}
