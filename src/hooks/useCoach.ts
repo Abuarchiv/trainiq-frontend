@@ -186,6 +186,11 @@ export function useCoach() {
               const data = dataLines.join("\n");
               if (data === "[DONE]") { streamDone = true; break; }
               if (!data) continue;
+              if (data.startsWith("[ERROR]")) {
+                setIsError(true);
+                streamDone = true;
+                break;
+              }
 
               full += data;
               setMessages((prev) =>
@@ -333,6 +338,11 @@ export function useCoach() {
               const data = dataLines.join("\n");
               if (data === "[DONE]") { streamDone = true; break; }
               if (!data) continue;
+              if (data.startsWith("[ERROR]")) {
+                setIsError(true);
+                streamDone = true;
+                break;
+              }
 
               full += data;
               setMessages((prev) =>
