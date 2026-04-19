@@ -18,7 +18,7 @@ export default function TrainingPage() {
   const [skipReason, setSkipReason] = useState("");
   const [showSkip, setShowSkip] = useState(false);
 
-  const selectedPlan = week.find((p: { date: string }) => p.date === selected);
+  const selectedPlan = (week ?? []).find((p: { date: string }) => p.date === selected);
 
   const handleComplete = (id: string) => {
     if (id.startsWith("empty-")) return;

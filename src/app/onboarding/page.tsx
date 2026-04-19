@@ -149,6 +149,7 @@ export default function OnboardingPage() {
     try {
       await api.post("/watch/sync");
     } catch { /* ignore */ }
+    localStorage.setItem("onboarding_done", "1");
     router.replace("/dashboard");
   };
 
