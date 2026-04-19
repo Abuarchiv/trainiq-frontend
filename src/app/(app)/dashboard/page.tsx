@@ -182,7 +182,7 @@ export default function DashboardPage() {
                   </p>
                 </div>
               </div>
-              {workout.duration_min > 0 && (
+              {(workout.duration_min ?? 0) > 0 && (
                 <div className="text-right">
                   <p className="font-pixel text-blue" style={{ fontSize: 28 }}>{workout.duration_min}</p>
                   <p className="text-xs font-sans text-textDim tracking-widest">MIN</p>

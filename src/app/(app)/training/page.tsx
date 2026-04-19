@@ -129,7 +129,7 @@ export default function TrainingPage() {
                   {selectedPlan.intensity_zone ? ` · ZONE ${selectedPlan.intensity_zone}` : ""}
                 </p>
               </div>
-              {selectedPlan.duration_min > 0 && (
+              {(selectedPlan.duration_min ?? 0) > 0 && (
                 <div className="text-right">
                   <p className="font-pixel text-blue" style={{ fontSize: 36 }}>{selectedPlan.duration_min}</p>
                   <p className="text-xs font-sans text-textDim tracking-widest">MIN</p>
@@ -138,7 +138,7 @@ export default function TrainingPage() {
             </div>
 
             {/* Parameter Grid */}
-            {selectedPlan.duration_min > 0 && (
+            {(selectedPlan.duration_min ?? 0) > 0 && (
               <div className="grid grid-cols-2 gap-0 border border-border mb-5">
                 {[
                   { label: "Intensität",    val: selectedPlan.intensity_zone ? `ZONE ${selectedPlan.intensity_zone}` : "—" },
